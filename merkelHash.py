@@ -15,8 +15,8 @@ def hash_file(filename):
     # return the hex representation of digest
     return h.hexdigest()
 
-message = hash_file("/Users/lucasdevries/Documents/GVSUWinter23/CIS455/MerkleTree/Files/File1.rtf")
-path_of_the_directory= '/Users/lucasdevries/Documents/GVSUWinter23/CIS455/MerkleTree/Files'
+message = hash_file("/Users/lucasdevries/Documents/GVSUWinter23/CIS455/MerkleTree/Files/File1.rtf") # change to a file within the given directory
+path_of_the_directory= '/Users/lucasdevries/Documents/GVSUWinter23/CIS455/MerkleTree/Files' # change to wanted path for directory
 print("Files and directories in a specified path:")
 files = []
 for filename in os.listdir(path_of_the_directory):
@@ -25,7 +25,7 @@ for filename in os.listdir(path_of_the_directory):
         split_tup = os.path.splitext(f)
         file_name = split_tup[0]
         file_extension = split_tup[1]
-        if(file_extension == ".rtf"):
+        if(file_extension == ".rtf"): # Filtering out the added file within this directory, only getting the file types 'rtf'
             files.append(hash_file(f))
             print("File: " + file_name + " Hash: " + hash_file(f))
 
@@ -43,4 +43,5 @@ def merkleRoot(leaves):
         x = leaves[2*i] + leaves[2*i+1]
         n.append(hashlib.sha1(str(x).encode('utf-8')).hexdigest())
     return merkleRoot(n)
+
 print("Root Hash: " + merkleRoot(files))
